@@ -13,7 +13,6 @@ public class ItemInfoServiceImpl extends GenericServiceImpl<ItemInfo, String> im
 	@Autowired
 	ItemInfoDao infoDao;
 
-	@Override
 	public void saveItemInfo(ItemInfo info) {
 		infoDao.saveItemInfo(info);
 	}
