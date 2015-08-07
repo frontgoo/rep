@@ -86,11 +86,12 @@
         </property>
         <property name="hibernateProperties">
             <props>
+            	<prop key="hibernate.current_session_context_class">thread</prop>
                 <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
                 <prop key="current_session_context_class">thread</prop> 
-                <prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
+                <!-- <prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop> -->
             </props>
         </property>
     </bean>
@@ -101,22 +102,22 @@
       <property name="username" value="${jdbc.user}" />
       <property name="password" value="${jdbc.pass}" />
    </bean>
-       <!-- 配置Hibernate的局部事务代理，使用HibernateTransactionManager类 -->
+     <!--   配置Hibernate的局部事务代理，使用HibernateTransactionManager类 -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
             <property name="sessionFactory" ref="frontgoo_sessionFactory" />
     </bean> 
     <!-- 配置事务增强处理Bean，指定事务管理器 -->
-<!--     <tx:advice id="txAdvice" transaction-manager="transactionManager">
+ <!--    <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
             所有以get开头的方法时read-only的
             <tx:method name="get*" read-only="true" propagation="REQUIRED"/>
             其它事务使用默认的事务设置
             <tx:method name="*" propagation="REQUIRED"/>
         </tx:attributes>
-    </tx:advice> -->
-<!--     <aop:config>
-        配置一个切入点，匹配UserManager的所有方法的执行
-        <aop:pointcut expression="execution(public * org.frontgoo.scrap.ali.service.impl.*.*(..))" id="userPointCut"/>
+    </tx:advice>
+    <aop:config> -->
+        <!-- 配置一个切入点，匹配UserManager的所有方法的执行 -->
+       <!--  <aop:pointcut expression="execution(public * org.frontgoo.scrap.ali.service.impl.*.*(..))" id="userPointCut"/>
         指定在userpointCut切入点应用txAdvice事务增强处理
         <aop:advisor advice-ref="txAdvice" pointcut-ref="userPointCut"/>
     </aop:config> -->
@@ -126,7 +127,7 @@
         <property name="sessionFactory" ref="frontgoo_sessionFactory" />
     </bean> 
    <tx:annotation-driven transaction-manager="transactionManager"  proxy-target-class="true"/> --> 
-  <!--   <bean id="transactionInterceptor"  
+    <bean id="transactionInterceptor"  
         class="org.springframework.transaction.interceptor.TransactionInterceptor">  
         <property name="transactionManager" ref="transactionManager" />  
         配置事务属性  
@@ -156,7 +157,7 @@
             </list>  
         </property>  
     </bean>  
-    -->
+   
   <!--  
     配置Hibernate事务管理器
     <bean id="transactionManager"

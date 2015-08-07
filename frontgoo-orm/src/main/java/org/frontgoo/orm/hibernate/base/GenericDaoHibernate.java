@@ -61,7 +61,6 @@ import org.springframework.util.Assert;
  *            the primary key for that type
  */
 @SuppressWarnings("rawtypes")
-@Repository
 public class GenericDaoHibernate<T, PK extends Serializable> implements
 		GenericDao<T, PK> {
 	
@@ -311,7 +310,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements
 	 */
 	@SuppressWarnings("unchecked")
 	public T save(T object) {
-		return (T) getSession().merge(object);
+		return (T) getSession().save(object);
 	}
 
 	/**

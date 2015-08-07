@@ -6,6 +6,7 @@ import org.frontgoo.scrap.ali.service.ItemInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +21,7 @@ public class ItemController {
 	LocalSessionFactoryBean se;
 	
     @RequestMapping(value="/query",method=RequestMethod.GET)
+    @Transactional
     public ModelAndView hello2(){
         ModelAndView mv = new ModelAndView();
         mv.addObject("message", "HelloMVC");

@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import javax.transaction.Transactional;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Session;
@@ -52,7 +50,6 @@ import org.springframework.stereotype.Service;
  * @param <PK>
  *            the primary key for that type
  */
-@Transactional
 @Service
 public class GenericServiceImpl<T, PK extends Serializable> implements
 		GenericService<T, PK> {
