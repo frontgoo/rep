@@ -6,32 +6,48 @@
         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
         id="WebApp_ID" version="3.0">
         
-  <display-name>FrontGoo Scrap Web Application</display-name>
-
-	<context-param>
-	    <param-name>contextConfigLocation</param-name>
-	    <param-value>
-	    classpath:/contex-resource.xml
-	     classpath:/datasource.xml
-	    </param-value>
-  	</context-param> 
-
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
+  	<display-name>FrontGoo Scrap Web Application</display-name>
   
-  <!-- 定义frontgoo-dispatcher -->
-  <servlet>
-    <servlet-name>frontgoo-dispatcher</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <init-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:/contex-resource.xml</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>frontgoo-dispatcher</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
+	<context-param>
+	   <param-name>contextConfigLocation</param-name>
+	   <param-value>
+	   classpath*:/datasource.xml
+	   classpath*:/contex-resource.xml
+	   </param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	<!-- 定义frontgoo-dispatcher -->
+	<servlet>
+	  <servlet-name>frontgoo-dispatcher</servlet-name>
+	  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	  <load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+	  <servlet-name>frontgoo-dispatcher</servlet-name>
+	  <url-pattern>*.action</url-pattern>
+	</servlet-mapping>
+	
+<!-- 	<filter>
+		<filter-name>openSessionInViewFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+			<init-param>
+				<param-name>singleSession</param-name>
+				<param-value>true</param-value>
+			</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>openSessionInViewFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping> -->
+
+	<web:welcome-file-list>
+		<web:welcome-file>
+			index.html
+		</web:welcome-file>
+	</web:welcome-file-list>
 </web-app>

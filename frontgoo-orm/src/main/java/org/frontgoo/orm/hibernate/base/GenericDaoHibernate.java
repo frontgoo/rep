@@ -34,6 +34,7 @@ import org.hibernate.internal.CriteriaImpl;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.util.Assert;
@@ -61,6 +62,7 @@ import org.springframework.util.Assert;
  *            the primary key for that type
  */
 @SuppressWarnings("rawtypes")
+@Component
 public class GenericDaoHibernate<T, PK extends Serializable> implements
 		GenericDao<T, PK> {
 	
@@ -96,7 +98,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements
 	}
 
 	@Autowired
-	@Qualifier("frontgoo_sessionFactory")
+	@Qualifier("sessionFactory")
 	private SessionFactory sessionFactory;
 
 	public Session getSession() {
@@ -311,6 +313,15 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements
 	@SuppressWarnings("unchecked")
 	public T save(T object) {
 		return (T) getSession().save(object);
+	}
+	
+	public void saveOrUpdate(T object){
+		getSession().saveOrUpdate(object);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public T merge(T object){
+		return (T) getSession().merge(object);
 	}
 
 	/**

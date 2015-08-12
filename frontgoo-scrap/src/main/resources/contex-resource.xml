@@ -15,12 +15,15 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
         ">
-        
+	<mvc:annotation-driven/>
     <!-- 启动自动扫描该包下所有的Bean(例如@Controller) -->
-    <context:component-scan base-package="org.frontgoo.scrap" />
+    <context:component-scan base-package="org.frontgoo.scrap.ali.service" />
+    <context:component-scan base-package="org.frontgoo.scrap.ali.dao" />
     <context:component-scan base-package="org.frontgoo.orm" />
     <!-- <context:component-scan base-package="org.frontgoo.scrap.ali.controller" /> -->
-    
+    <context:component-scan base-package="org.frontgoo.scrap.ali.controller">
+    	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
     <!-- 定义视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">

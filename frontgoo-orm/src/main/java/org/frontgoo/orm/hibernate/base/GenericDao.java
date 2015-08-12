@@ -72,6 +72,10 @@ public interface GenericDao <T, PK extends Serializable> {
      * @return the persisted object
      */
     T save(T object);
+    
+    void saveOrUpdate(T object);
+    
+    public T merge(T object);
 
     /**
      * Generic method to delete an object based on class and id

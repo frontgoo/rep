@@ -6,6 +6,11 @@
   <packaging>pom</packaging>
   <name>org.frontgoo.parent</name>
   <description>frontgoo 项目的 maven 框架的父级pom</description>
+	<modules>
+		<module>frontgoo-orm</module>
+		<module>frontgoo-util</module>
+		<module>frontgoo-scrap</module>
+	</modules>
   <!-- 全局属性  -->
   <properties>
   	<spring.version>4.0.3.RELEASE</spring.version>
@@ -129,4 +134,18 @@
 		<version>1.5.4</version>
 	</dependency>
   </dependencies>
+    <build>
+    <finalName>spring3-mvc-hibernate</finalName>
+    <plugins>
+    	<plugin>
+	    	<groupId>org.apache.maven.plugins</groupId>  
+	        <artifactId>maven-compiler-plugin</artifactId>  
+	        <version>2.3.2</version>  
+	        <configuration>  
+	            <source>1.7</source>  
+	            <target>1.7</target>  
+	        </configuration> 
+    	</plugin>
+    </plugins>
+  </build>
 </project>

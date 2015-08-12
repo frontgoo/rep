@@ -20,8 +20,6 @@ import org.apache.commons.lang.RandomStringUtils;
 @Table(name = "item_info")
 public class ItemInfo {
 
-	@Id
-	@Column(name = "ID", length = 32, nullable = false)
 	private String id;
 	
 	@Column
@@ -33,7 +31,6 @@ public class ItemInfo {
 	@Column
 	private String imgUrl;
 	
-	@Transient
 	private List<ColorSizeEntity> colorSizes;
 
 	@Column
@@ -48,6 +45,8 @@ public class ItemInfo {
 	/**
 	 * @return the id
 	 */
+	@Id
+	@Column(name = "ID", length = 32, nullable = false)
 	public String getId() {
 		
 		if (id != null)
@@ -101,6 +100,7 @@ public class ItemInfo {
 	/**
 	 * @return the colorSizes
 	 */
+	@Transient
 	public List<ColorSizeEntity> getColorSizes() {
 		return colorSizes;
 	}

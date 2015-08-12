@@ -50,7 +50,6 @@ import org.springframework.stereotype.Service;
  * @param <PK>
  *            the primary key for that type
  */
-@Service
 public class GenericServiceImpl<T, PK extends Serializable> implements
 		GenericService<T, PK> {
 	/**

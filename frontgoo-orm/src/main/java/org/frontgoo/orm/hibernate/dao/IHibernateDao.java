@@ -27,7 +27,7 @@ public class IHibernateDao<T, PK extends Serializable> {
 	protected Logger logger = LoggerFactory.getLogger(getClass());  
   
 	@Autowired
-	@Qualifier("frontgoo_sessionFactory")
+	@Qualifier("sessionFactory")
     protected SessionFactory sessionFactory;  
 	
 	protected Session session;
